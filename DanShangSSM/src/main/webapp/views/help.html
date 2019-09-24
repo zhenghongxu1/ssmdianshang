@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link href="../css/mui.page.css" rel="stylesheet">
+	<link href="../css/main.css" rel="stylesheet" />
+	<link href="../css/help.css" rel="stylesheet" />
+</head>
+
+<body class="mui-fullscreen">
+<!--页面主结构开始-->
+<div id="myPage" class="mui-views">
+	<div class="mui-view">
+		<div class="mui-navbar">
+		</div>
+		<div class="mui-pages">
+		</div>
+	</div>
+</div>
+<!--页面主结构结束-->
+<!--单页面开始-->
+<div id="myPageContent" class="mui-page">
+	<!--页面标题栏开始-->
+	<div class="mui-navbar-inner mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-center mui-title">常见问题</h1>
+	</div>
+	<!--页面标题栏结束-->
+	<!--页面主内容区开始-->
+	<div class="mui-page-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+
+				<section class="all-answer">
+					<div class="answr-title">
+						全部问题
+					</div>
+					<div class="answer-entry">
+						<a dataId="1" href="#faqInfo">
+							<span class="entry-list1"></span>
+							冰箱冷柜
+						</a>
+						<a dataId="2"  href="#faqInfo">
+							<span class="entry-list2"></span>
+							空调
+						</a>
+						<a dataId="3"  href="#faqInfo">
+							<span class="entry-list3"></span>
+							洗衣机
+						</a>
+						<!--<a href="faq.html?id=4">-->
+						<a dataId="4" >
+							<span class="entry-list4"></span>
+							彩电
+						</a>
+					</div>
+					<div class="answer-entry">
+						<!--<a href="faq.html?id=5">-->
+						<a  dataId="5"  >
+							<span class="entry-list5"></span>
+							热水器
+						</a>
+						<!--<a href="faq.html?id=6">-->
+						<a  dataId="6" >
+							<span class="entry-list6"></span>
+							厨房家电
+						</a>
+						<!--<a href="faq.html?id=7">-->
+						<a  dataId="7" >
+							<span class="entry-list7"></span>
+							生活家电
+						</a>
+						<!--<a href="faq.html?id=8">-->
+						<a  dataId="8" >
+							<span class="entry-list8"></span>
+							其他
+						</a>
+					</div>
+				</section>
+				<section class="hot-question">
+					<div class="question-title">
+						常见问题
+					</div>
+					<ul class="question-list">
+						<li >
+							<a topicId="101" href="#detailInfo">
+								冰箱冷藏室出现反复结冰
+							</a>
+							<span class="s-point"></span>
+						</li>
+						<li >
+							<a topicId="102" href="#detailInfo">
+								老冰箱冷藏室结冰后不制冷
+							</a>
+							<span class="s-point"></span>
+						</li>
+						<li >
+							<a topicId="103" href="#detailInfo">
+								新买冰箱冷藏室结冰
+							</a>
+							<span class="s-point"></span>
+						</li>
+						<li >
+							<a topicId="104" href="#detailInfo">
+								冰箱冷藏室后壁结冰是怎么回事
+							</a>
+							<span class="s-point"></span>
+						</li>
+						<li >
+							<a topicId="105" href="#detailInfo">
+								直冷冰箱冷藏室结冰很厉害
+							</a>
+							<span class="s-point"></span>
+						</li>
+					</ul>
+				</section>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!--二级-->
+<div id="faqInfo" class="mui-page">
+</div>
+<!--三级-->
+<div id="detailInfo" class="mui-page">
+
+</div>
+
+<!--faqInfo模板-->
+<script id="faq-template" type="text/x-handlebars-template">
+	<div class="mui-navbar-inner mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-center mui-title">{{title}}</h1>
+	</div>
+	<div class="mui-page-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll" >
+		<section class="hot-question">
+			<ul class="question-list">
+				{{#each  topics}}
+				<li >
+					<a  topicId="{{topicId}}" href="#detailInfo">
+						{{topicTitle}}
+					</a>
+					<span class="s-point"></span>
+				</li>
+				{{/each}}
+			</ul>
+		</section>
+			</div>
+		</div>
+	</div>
+</script>
+<!--detailInfo模板-->
+<script id="detail-template" type="text/x-handlebars-template">
+	<div class="mui-navbar-inner mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-center mui-title">{{title}}</h1>
+	</div>
+	<div class="mui-page-content">
+		<div class="mui-scroll-wrapper">
+			<div class="mui-scroll" >
+		<section class="faq-detail">
+			<div class="faq-title">
+				{{faqTitle}}
+			</div>
+			<div class="faq-content">
+				{{#each  faqContext}}
+				<section style="text-indent:2em;">{{section}}</section></br>
+				{{#if image}}
+				<div style="width:100%;text-align: center">
+					<img src="{{image}}">
+				</div>
+				{{/if}}
+				{{/each}}
+			</div>
+		</section>
+			</div>
+		</div>
+	</div>
+</script>
+<script src="../lib/mui.min.js"></script>
+<script src="../lib/mui.view.js "></script>
+<script src="../lib/zepto.min.js"></script>
+<script src="../lib/handlebars.js"></script>
+<script src="../js/help.js"></script>
+<script>
+	mui.init({
+
+	});
+	$().ready(function() {
+
+	})
+</script>
+</body>
+
+</html>

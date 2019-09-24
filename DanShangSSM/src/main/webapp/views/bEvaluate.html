@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/main.css" rel="stylesheet" />
+		<style>
+			.item {
+				font-size: 0.25rem;
+			}
+			
+			.box-justify-left {
+				justify-content: flex-start;
+				padding-left: 20px;
+				padding-top: 3px;
+				padding-bottom: 3px;
+			}
+			
+			.radio-list {
+				padding: 0;
+				margin: 0;
+			}
+			
+			.radio-list li {
+				display: inline-block;
+				margin: 8px auto;
+				line-height: 30px;
+				height: 30px;
+				position: relative;
+				width: 49%;
+				text-align: center;
+				float: left;
+			}
+			
+			.radio-list li input[type=radio] {
+				cursor: pointer;
+				position: absolute;
+				opacity: 0;
+				height: 17px;
+				width: 17px;
+				top: 4px;
+			}
+			
+			.radio-list li input[type=radio] + span {
+				background: url(../img/choose_nor.png) left center no-repeat;
+				background-size: 17px 17px;
+				padding-left: 18px;
+				/*display: inline-block;*/
+			}
+			
+			.radio-list li input[type=radio]:checked + span {
+				background-image: url(../img/choose_check.png);
+			}
+		</style>
+	</head>
+
+	<body>
+        <input type="hidden" name="woId">
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">服务评价</h1>
+		</header>
+		<div class="mui-content" >
+            <div class="mui-scroll-wrapper">
+                <div style="margin-top: 44px;" class="mui-scroll" id="evaluate">
+                </div>
+            </div>
+		</div>
+		<script src="../lib/mui.min.js"></script>
+		<script src="../lib/zepto.min.js"></script>
+        <script src="../lib/layer.js"></script>
+        <script src="../lib/handlebars.js"></script>
+        <script src="../js/evaluate.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			$().ready(function() {
+				var GET = urlGet(); //获取URL的Get参数
+				var source = GET['source']; //取得值
+				if (source != undefined) {
+					window.localStorage.setItem("source", source);
+				}
+                //提交操作
+                $('#bsubmit').on('tap', function() {
+                    bSubmit();
+                })
+			})
+		</script>
+	</body>
+
+</html>
+<script id="tpl" type="text/x-handlebars-template">
+
+        <div class="header">
+            <h3>服务人员</h3>
+        </div>
+        <div class="content">
+            <div class="box">
+                <div style="flex: 1 37%;" class="item  box box-columns box-align-left pl-20">
+                    <img style="width: 100px;height: 100px;" id="emp_touxiang" src="../img/shifu.jpg">
+                </div>
+                <div style="flex: 1 63%;" class="item box box-columns">
+                    <div class="box box-align-center box-justify-left">
+                        <div>师傅姓名：</div>
+                        <div>{{emp_name}}</div>
+                    </div>
+                    <div class="box box-align-center box-justify-left">
+                        <div>师傅工号：</div>
+                        <div>{{emp_no}}</div>
+                    </div>
+                    <div class="box box-align-center box-justify-left">
+                        <div>评价量：</div>
+                        <div>{{pj_count}}</div>
+                    </div>
+                    <div class="box box-align-center box-justify-left">
+                        <div>好评量：</div>
+                        <div>{{hpj_count}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <h3>是否本人上门</h3>
+        </div>
+        <div class="content">
+            <ul class="radio-list mui-clearfix">
+                <li>
+                    <label for="sex_1">
+                        <input type="radio" name="sex" value="Y" id="sex_1" checked="checked"><span>本人上门</span>
+                    </label>
+                </li>
+                <li>
+                    <label for="sex_2">
+                        <input type="radio" name="sex" value="N" id="sex_2"><span>其他师傅</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="header">
+            <h3>服务评价</h3>
+        </div>
+        <div class="content">
+            <div id="hzcp" class="mui-clearfix">
+                <input type="hidden" name="hzcp" value="Y">
+                <div><img hzcp="Y" src="../img/hp-active.png" style="width: auto">好评</div>
+                <div><img hzcp="M" src="../img/zp.png" style="width: auto">中评</div>
+                <div><img hzcp="N" src="../img/cp.png" style="width: auto">差评</div>
+            </div>
+            <div class="form-content">
+                <div class="form-row" style="padding-top: 5px">
+                    <div style="width:27%;text-align:right;color:#000;display: inline-block;">上门速度</div>
+                    <ul class="js_comment_start" id="serSuDu" style="margin-left:0;width: 70%;text-align: center;">
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <input type="hidden" id="speed_satis" name="speed_satis" value="5">
+                    </ul>
+                </div>
+                <div class="form-row">
+                    <div style="width:27%;text-align:right;color:#000;display: inline-block;">服务态度</div>
+                    <ul class="js_comment_start" id="serTai" style="margin-left:0;width: 70%;text-align: center;">
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <input type="hidden" id="td_satis" name="td_satis" value="5">
+                    </ul>
+                </div>
+                <div class="form-row">
+                    <div style="width:27%;text-align:right;color:#000;display: inline-block;">服务技能</div>
+                    <ul class="js_comment_start" id="serPower" style="margin-left:0;width: 70%;text-align: center;">
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <li class="cur"></li>
+                        <input type="hidden" id="tec_satis" name="tec_satis" value="5">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header">
+            <h3>评价</h3>
+        </div>
+        <div class="content">
+            <textarea id="content" rows="3" style="font-size: 14px;width:100%;height:50px;border:none" placeholder="&nbsp;写点评论吧，对我们很有帮助。"></textarea>
+        </div>
+        <div class="mui-content-padded">
+            <button class="mui-btn mui-btn-block mui-btn-primary"  id="bsubmit" >提交</button>
+        </div>
+        <div style="width: 100%;height:50px"></div>
+</script>

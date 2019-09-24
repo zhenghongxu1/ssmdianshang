@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/mui.page.css">
+		<link href="../css/mui.picker.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/layer.css" />
+		<link rel="stylesheet" href="../css/main.css">
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="myPage" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="myPageContent" class="mui-page">
+			<!--页面标题栏开始-->
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-center mui-title">地址管理</h1>
+			</div>
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll" >
+						<div class="mui-content-padded">
+                            <div id="addressCount" class="msg-warn" style="display: none"></div>
+							<div id="addressWarn" class="msg-warn">最多10个地址哦~</div>
+						</div>
+                        <ul class="mui-table-view" id="myddressList">
+                        </ul>
+						<div style="margin-top: 0px" class="mui-content-padded">
+							<a href="#addAddress" class="mui-btn mui-btn-primary mui-btn-block">添加地址</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--单页面结束-->
+		<div id="addAddress" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-center mui-title">新建地址</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<form style="height: 100%;" class="mui-input-group">
+							<div class="mui-input-row">
+								<label>联系人<span style="color: red;font-weight:  bold">*</span></label>
+								<input id="c-linkman" type="text" class="mui-input-clear" placeholder="请输入您的姓名">
+							</div>
+							<div class="mui-input-row">
+								<label>手机号码<span style="color: red;font-weight:  bold">*</span></label>
+								<input id="c-phone" type="tel" class="mui-input-clear" placeholder="请输入您的电话号码">
+							</div>
+							<div class="mui-input-row">
+								<label>省市区<span style="color: red;font-weight:  bold">*</span></label>
+								<input name="addressx" id="c-adminCodeName" type="text" placeholder="请选择详细地址" onfocus="this.blur();">
+                                <input id="c-adminCode" type="hidden" >
+							</div>
+							<div class="mui-input-row">
+								<label>楼层门牌<span style="color: red;font-weight:  bold">*</span></label>
+								<input id="c-address" type="text" placeholder="**路（街道）**小区**号">
+							</div>
+						</form>
+						<div class="mui-content-padded">
+							<a id="addAddressB" class="mui-btn mui-btn-primary mui-btn-block">保存</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="eidtAddress" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-center mui-title">编辑地址</h1>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<form style="height: 100%;" class="mui-input-group">
+							<div class="mui-input-row">
+								<label>联系人<span style="color: red;font-weight:  bold">*</span></label>
+								<input id="e-linkman" type="text" class="mui-input-clear" placeholder="请输入您的姓名">
+							</div>
+							<div class="mui-input-row">
+								<label>手机号码<span style="color: red;font-weight:  bold">*</span></label>
+								<input  id="e-phone" type="tel" class="mui-input-clear" placeholder="请输入您的电话号码">
+							</div>
+							<div class="mui-input-row">
+								<label>省市区<span style="color: red;font-weight:  bold">*</span></label>
+								<input name="addressx" id="e-adminCodeName"  type="text" placeholder="请选择详细地址" onfocus="this.blur();">
+                                <input id="e-adminCode" type="hidden" >
+                                <input id="e-rowid" type="hidden" >
+							</div>
+							<div class="mui-input-row">
+								<label>楼层门牌<span style="color: red;font-weight:  bold">*</span></label>
+								<input id="e-address" type="text" placeholder="**路（街道）**小区**号">
+							</div>
+						</form>
+						<div class="mui-content-padded">
+							<a id="doUpdate" class="mui-btn mui-btn-primary mui-btn-block">保存</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../lib/mui.min.js"></script>
+    <script src="../lib/mui.picker.min.js"></script>
+	<script src="../lib/mui.view.js "></script>
+	<script src="../lib/zepto.min.js"></script>
+	<script src="../lib/layer.js"></script>
+	<script>
+		mui.init({
+			swipeBack: false
+		});
+		$().ready(function() {
+			var GET = urlGet(); //获取URL的Get参数
+			var source = GET['source']; //取得值
+			if (source != undefined) {
+				window.localStorage.setItem("source", source);
+			}
+
+			//点击编辑时,需要将当前选择数据回填
+
+            //点击编辑时,需要将当前选择数据回填
+            $("#addAddressB").on("tap",function(e) {
+                addAddressB();
+            })
+            //点击编辑时,需要将当前选择数据回填
+            $("#doUpdate").on("tap",function(e) {
+                doUpdateAddress();
+            })
+
+
+            getUserAddressList();
+			getRegionData();
+
+			$("[name='addressx']").on('tap', function(event) {
+				//其他焦点元素失去焦点， 关闭键盘
+				$(document.activeElement).blur();
+                var addressId = $(this).attr('id');
+                var adminCode = $(this).next().attr('id');
+				cityPicker3.show(function(items) {
+                    $('#'+addressId).val((items[0] || {}).text + (items[1] || {}).text + (items[2] || {}).text);
+					$('#'+adminCode).val(items[2].value);
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}, false);
+		})
+	</script>
+    <script src="../lib/handlebars.js"></script>
+    <script src="../lib/layer.js"></script>
+    <script src="../js/address.js"></script>
+</html>
+
+<script id="template1" type="text/x-handlebars-template">
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+            <a class="choose" AdminCode="{{region}}"  adress="{{adress}}">
+                <div class="mui-media-body">
+                    <div style="font-size:0.32rem;margin: 0.3rem auto;" class="box box-align-left">
+                        <div style="text-align: left;" class="item">{{linkman}}</div>
+                        <div style="flex: 1.5;text-align: left;" class="item">{{phone}}</div>
+                    </div>
+                         <p class='mui-ellipsis'>{{reserve1}}</p>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell font-gray">
+                <div style="justify-content:space-between"  class="box">
+                    <div class="mui-checkbox mui-left">
+                        <input name="checkbox"  type="checkbox" moren="{{rowId}}" onclick="return false;">设置默认</input>
+                    </div>
+                    <div class="operation">
+                        <a href="#eidtAddress" bianji="{{rowId}}" name="doEidtAddress"><span class="mui-icon mui-icon-compose icon-big"></span>编辑</a>
+                        <a id="del" rowId="{{rowId}}"><span class="mui-icon mui-icon-trash icon-big"></span>删除</a>
+                    </div>
+                </div>
+        </li>
+</script>

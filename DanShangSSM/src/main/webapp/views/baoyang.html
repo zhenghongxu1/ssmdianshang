@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mui.page.css">
+		<link href="../css/main.css" rel="stylesheet" />
+	</head>
+
+	<body class="mui-fullscreen">
+		<!--页面主结构开始-->
+		<div id="myPage" class="mui-views">
+			<div class="mui-view">
+				<div class="mui-navbar">
+				</div>
+				<div class="mui-pages">
+				</div>
+			</div>
+		</div>
+		<!--页面主结构结束-->
+		<!--单页面开始-->
+		<div id="myPageContent" class="mui-page">
+			<!--页面标题栏开始-->
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-center mui-title">家电保养</h1>
+			</div>
+			<!--页面标题栏结束-->
+			<!--页面主内容区开始-->
+			<div class="mui-page-content">
+				<div class="mui-content">
+					<div class="mui-slider mui-fullscreen" style="position:absolute; ">
+						<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+							<div style="background: #FFF;" class="mui-scroll">
+								<a style="width: 50%;" class="mui-control-item mui-active" href="#tc">优惠套餐</a>
+								<a style="width: 50%;" class="mui-control-item" href="#dp">家电保养</a>
+							</div>
+						</div>
+						<div class="mui-slider-group">
+							<div id="tc" class="mui-slider-item mui-control-content mui-active">
+								<div class="mui-scroll-wrapper">
+									<div class="mui-scroll">
+										<!--没订单的情况-->
+										<div style="height:600px;display: none;" class="box box-columns box-align-center">
+											<img />
+											<p>没有任何套餐信息</p>
+										</div>
+										<!--数据列表-->
+										<ul class="mui-table-view">
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家烟机灶台
+														<p class="mui-ellipsis mui-text-mb">包含油烟机和灶台</p>
+														套餐价：¥185元<del class="mui-small-grap">原价：¥238元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家烟机冰箱
+														<p class="mui-ellipsis mui-text-mb">包含油烟机和冰箱</p>
+														套餐价：¥210元<del class="mui-small-grap">原价：¥258元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家洗衣机热水器
+														<p class="mui-ellipsis mui-text-mb">包含洗衣机和热水器</p>
+														套餐价：¥136元<del class="mui-small-grap">原价：¥178元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家空调2挂1柜
+														<p class="mui-ellipsis mui-text-mb">包含两个挂机和一个柜机</p>
+														套餐价：¥280元<del class="mui-small-grap">原价：¥360元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家全家套餐
+														<p class="mui-ellipsis mui-text-mb">包含所有家电</p>
+														套餐价：¥900元<del class="mui-small-grap">原价：¥1438元</del>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div id="dp" class="mui-slider-item mui-control-content">
+								<div class="mui-scroll-wrapper">
+									<div class="mui-scroll">
+										<!--没订单的情况-->
+										<div style="height:600px;display: none;" class="box box-columns box-align-center">
+											<img />
+											<p>没有任何保养产品</p>
+										</div>
+										<!--数据列表-->
+										<ul class="mui-table-view">
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家挂式空调
+														<p class="mui-ellipsis mui-text-mb">还您自然清新的空气</p>
+														优惠价：¥90元<del class="mui-small-grap">原价：¥138元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家柜式空调
+														<p class="mui-ellipsis mui-text-mb">还您自然清新的空气</p>
+														优惠价：¥135元<del class="mui-small-grap">原价：¥158元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家吸油烟机
+														<p class="mui-ellipsis mui-text-mb">油渍去无踪，生活更健康</p>
+														优惠价：¥150元<del class="mui-small-grap">原价：¥175元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家燃气灶
+														<p class="mui-ellipsis mui-text-mb">油渍去无踪，生活更健康</p>
+														优惠价：¥55<del class="mui-small-grap">原价：¥70元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家消毒柜
+														<p class="mui-ellipsis mui-text-mb">去除有害物质</p>
+														优惠价：¥80元<del class="mui-small-grap">原价：¥138元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家单门冰箱
+														<p class="mui-ellipsis mui-text-mb">除冰除菌除异味</p>
+														优惠价：¥100元<del class="mui-small-grap">原价：¥138元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家双门冰箱
+														<p class="mui-ellipsis mui-text-mb">除冰除菌除异味</p>
+														优惠价：¥120元<del class="mui-small-grap">原价：¥148元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家三门冰箱
+														<p class="mui-ellipsis mui-text-mb">除冰除菌除异味</p>
+														优惠价：¥135元<del class="mui-small-grap">原价：¥168元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家对开门冰箱
+														<p class="mui-ellipsis mui-text-mb">除冰除菌除异味</p>
+														优惠价：¥135元<del class="mui-small-grap">原价：¥168元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家波轮
+														<p class="mui-ellipsis mui-text-mb">彻底清除内筒污垢 避免洗衣二次污染</p>
+														优惠价：¥90元<del class="mui-small-grap">原价：¥128元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家滚筒
+														<p class="mui-ellipsis mui-text-mb">彻底清除内筒污垢 避免洗衣二次污染</p>
+														优惠价：¥90元<del class="mui-small-grap">原价：¥128元</del>
+													</div>
+												</a>
+											</li>
+											<li class="mui-table-view-cell mui-media">
+												<a href="#by-order" class="mui-navigate-right">
+													
+													<div class="mui-media-body">
+														乐家热水器
+														<p class="mui-ellipsis mui-text-mb">清除积碳 热水更给力</p>
+														优惠价：¥80元<del class="mui-small-grap">原价：¥128元</del>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--页面主内容区结束-->
+		</div>
+		<!--保养下单页面-->
+		<div id="by-order" class="mui-page">
+			<div class="mui-navbar-inner mui-bar mui-bar-nav">
+				<a name="captchaBack" class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+				<h1 class="mui-center mui-title">油烟机清洗</h1>
+			</div>
+			<div class="footer-div">
+				<div class="div-left"><span>¥&nbsp;158</span></div>
+				<div class="div-right">
+					<a id="by-pay" href="javascript:;" class="mui-btn mui-btn-primary">
+						现在预约
+					</a>
+				</div>
+			</div>
+			<div class="mui-page-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<div class="header">
+							<h3>选择型号</h3>
+						</div>
+						<div class="content">
+							<div class="box">
+								<div style="margin: 10px" class="item item-25"><button type="button" class="mui-btn btn-pro">冰箱</button></div>
+								<div style="margin: 10px" class="item item-25"><button type="button" class="mui-btn btn-pro">冷柜</button></div>
+							</div>
+						</div>
+						<div class="header">
+							<h3>服务介绍</h3>
+						</div>
+						<div class="content">
+							<p>一般油烟机使用三个月后，叶轮、烟道上将粘有大量的油污，增加叶轮的重量，可能会加大电机启动电流量，同时也可能加大噪音。油污经过长时间积累，发生氧化形成酸性物质，容易对油烟机进行腐蚀和生锈，烟道内部还将形成火灾隐患。</p>
+						</div>
+						<div class="header">
+							<h3>服务标准</h3>
+						</div>
+						<div class="content">
+							<p>1、拆除滤网清洁，彻底去除油污；</p>
+							<p>2、内部蒸汽清洁消毒；</p>
+							<p>3、外部使用专用清洁剂清洗，光亮如新；</p>
+							<p>4、保养后质保一个月（限内机）；</p>
+						</div>
+						<div class="header">
+							<h3>服务流程</h3>
+						</div>
+						<div class="content">
+							<p>1、验机；</p>
+							<p>2、做家庭环境防护，准备工具</p>
+							<p>3、拆卸油杯、油网，加装保护罩</p>
+							<p>4、清洗机、清洗剂高温深度保养</p>
+							<p>5、装油杯、油网</p>
+							<p>6、试机、清理现场</p>
+						</div>
+						<div style="width: 100%;height:50px"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../lib/mui.min.js"></script>
+		<script src="../lib/mui.view.js "></script>
+		<script src="../lib/zepto.min.js"></script>
+		<script>
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
+			});
+			$().ready(function() {
+				$("#by-pay").on("tap", function() {
+					mui.openWindow({
+						id: "ordering-by",
+						url: "ordering-by.html?ceshi=1",
+						show: {
+							aniShow: aniShow
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				})
+				$(".btn-gz").click(function() {
+					if ($(this).hasClass('mui-btn-primary')) {
+						$(this).removeClass("mui-btn-primary");
+					} else {
+						$(this).addClass("mui-btn-primary");
+					}
+				})
+				$(".btn-pro").click(function() {
+					if ($(this).hasClass('mui-btn-primary')) {
+						$(".btn-pro").removeClass("mui-btn-primary");
+						$(this).removeClass("mui-btn-primary");
+					} else {
+						$(".btn-pro").removeClass("mui-btn-primary");
+						$(this).addClass("mui-btn-primary");
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

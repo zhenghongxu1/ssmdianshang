@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <title></title>
+        <link href="../css/mui.min.css" rel="stylesheet" />
+        <link href="../css/main.css" rel="stylesheet" />
+        <style>
+            .radio-list li {;
+                width: 33%;
+            }
+        </style>
+    </head>
+
+<body>
+<input type="hidden" name="orderId">
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <h1 class="mui-title">催单</h1>
+</header>
+<input id="serviceType" type="text" style="display: none">
+<div class="mui-content">
+    <div class="mui-scroll-wrapper">
+        <div style="margin-top: 44px;" class="mui-scroll" >
+            <div class="header">
+                <h3>催单信息</h3></div>
+            <div class="content">
+                <ul class="radio-list" onchange="clearContent()">
+                    <li>
+                        <label for="type_1">
+                            <input type="radio" name="type" value="1" id="type_1" checked="checked"><span>提醒一下</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="type_2">
+                            <input type="radio" name="type" value="2" id="type_2"><span>超出服务时间</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="type_3">
+                            <input type="radio" name="type" value="3" id="type_3"><span>其他类型</span>
+                        </label>
+                    </li>
+                </ul>
+                <input type="text" class="sel_box" name="content" id="content" disabled placeholder="其他类型催单内容">
+            </div>
+            <div class="mui-content-padded">
+                <button id='registerButton'  class="mui-btn mui-btn-block mui-btn-primary">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../lib/mui.min.js"></script>
+<script src="../lib/zepto.min.js"></script>
+<script src="../lib/layer.js"></script>
+<script src="../lib/handlebars.js"></script>
+<script src="../js/urge.js"></script>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+    $().ready(function() {
+        $('#registerButton').on('tap', function() {
+            submit();
+        })
+
+    })
+</script>
+
+</html>
