@@ -11,9 +11,8 @@ public class UserDaoServerImpl implements UserDaoServer{
     @Autowired
     UserDao service;
 	@Override
-	public void register() {
-		service.register();
-		
+	public void register(User user) {
+		service.register(user);
 	}
 
 	@Override

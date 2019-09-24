@@ -3,7 +3,7 @@ package com.chinasofti.dao;
 import com.chinasofti.pojo.User;
 public interface UserDao {
 //  ×¢²á1 
-	void register();
+	void register(User user);
 //  µÇÂ¼ 
 	void login(String name,String password);
 //	ĞŞ¸ÄÃÜÂë

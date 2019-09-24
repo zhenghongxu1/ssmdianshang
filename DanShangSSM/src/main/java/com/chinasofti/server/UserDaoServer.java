@@ -5,7 +5,7 @@ import com.chinasofti.pojo.User;
 
 public interface UserDaoServer {
 //  ×¢²á
-	void register();
+	void register(User user);
 //  µÇÂ¼ 
 	void login(String name,String password);
 //	ĞŞ¸ÄÃÜÂë
