@@ -16,21 +16,27 @@ public class UserDaoServerImpl implements UserDaoServer{
 	}
 
 	@Override
-	public void login(String name, String password) {
-		service.login(name, password);
+	public String login(String name, String password) {
+		String login = service.login(name, password);
+		return login;
+	}
+
+	@Override
+	public int updatePassword(User user,String oldPassword) {
+		return service.updatePassword(user,oldPassword);
 		
 	}
 
 	@Override
-	public void updatePassword(String password, String newPassword) {
-		service.updatePassword(password, newPassword);
-		
+	public User sfindOne(String name) {
+		User sfindOne = service.sfindOne(name);
+		return sfindOne;
 	}
 
 	@Override
-	public User sfindOne(long userid) {
-		service.sfindOne(userid);
-		return null;
+	public String loginUser(String name) {
+		String loginUser = service.loginUser(name);
+		return loginUser;
 	}
 
 }

@@ -469,4 +469,12 @@
       updated = #{updated,jdbcType=TIMESTAMP}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+  
+  <update id="changeWord" parameterType="com.chinasofti.pojo.User">
+  update user set password = #{password } where userid = #{userid }
+  </update>
+  
+    <select id="sfindOne" parameterType="String" resultType="com.chinasofti.pojo.User">
+  SELECT * FROM user where name = #{name }
+  </select>
 </mapper>

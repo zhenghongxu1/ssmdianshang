@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -12,6 +14,7 @@
 		<link href="css/mui.pull.css" rel="stylesheet" />
 		<link href="css/mui.picker.min.css" rel="stylesheet" />
 		<link href="css/main.css" rel="stylesheet" />
+		 <script type="text/javascript" src="js/jquery.min.js"></script>
 	</head>
 
 	<body>
@@ -415,7 +418,11 @@
 								<div class="mui-table-view mui-table-view-chevron">
 									<div id="goLogin" class="my-portrait-div">
 										<div class="my-portrait"></div>
+										<% if(session!=null){%>
+										<span >${yonghu.name }</span>
+										<% }else{%>
 										<span onclick="loginn()">点击登录</span>
+										<% }%>
 										<script>
 										
 										</script>
@@ -424,7 +431,7 @@
 								<div style="display: none;" class="mui-table-view mui-table-view-chevron">
 									<div class="my-portrait-div">
 										<div class="my-portrait"></div>
-										<span>18663955505</span>
+										<span>${yonghu.name }</span>
 									</div>
 								</div>
 								<ul class="mui-table-view mui-table-view-chevron">
@@ -485,7 +492,7 @@
                                         <span id="userInfoSexId" style="display: none" class="mui-pull-right"></span>
 									</li>
 									<li class="mui-table-view-cell">
-										<a id="birthday" class="mui-navigate-right">出生日期<span id="userInfo-birthday" data-options='{"type":"date","beginYear":1930,"endYear":2020}' class="mui-pull-right"></span></a>
+										<a id="birthday" class="mui-navigate-right">${yonghu.birthday }<span id="userInfo-birthday" data-options='{"type":"date","beginYear":1930,"endYear":2020}' class="mui-pull-right"></span></a>
 									</li>
 									<li class="mui-table-view-cell">
 										<a href="#statement" class="mui-navigate-right">个人说明<span id="userInfo-reserve1" class="mui-pull-right">这家伙很懒,说明都没有留下.</span></a>
@@ -674,6 +681,27 @@
 						</div>
 						<div class="mui-content-padded">
 							<a href="#wpass3" id="passwordUpdate"  class="mui-btn mui-btn-block mui-btn-primary ">完成</a>
+						 <script type="text/javascript">
+               /*   进行xiugai传值 */
+                 $("#passwordUpdate").click(function(){
+                	 alert("aaa");
+                 	var newp = $("#newp").val();
+                /*  	var password1 = $("#password").val();
+                 	var code1 = $("#code").val(); */
+                 	$.ajax({
+                 		type:"post",
+                 		url:"user/updatePass",
+                 		dataType:"json",
+                 		data:{password:newp},
+                 		async:true,
+                 		success:function(data){
+                 			if(data==1){
+                 				alert("success")
+                 			}
+                 		}
+                     });
+                 })
+			</script>
 						</div>
 					</div>
 				</div>
@@ -757,7 +785,6 @@
 				</div>
 			</div>
 		</div>
-
 		<script src="lib/mui.min.js"></script>
 		<script src="lib/mui.view.js"></script>
 		<script src="lib/mui.pullToRefresh.js"></script>
