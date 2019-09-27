@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -36,10 +37,19 @@
 				<span class="mui-icon mui-icon-list"></span>
 				<span class="mui-tab-label">分类</span>
 			</a>
-			<a  class="mui-tab-item" href="#order" id="myOrderList">
+			<a id="aaa" class="mui-tab-item" href="#order" id="myOrderList">
 				<span class="mui-icon mui-icon-compose"  style= "border-radius:70%; background:red"></span>
 				<span class="mui-tab-label">订单</span>
 			</a>
+			<a  class="mui-tab-item" href="#order" id="myOrderList">
+				<span class="mui-icon mui-icon-compose"  style= "border-radius:70%; background:red"></span>
+				<span class="mui-tab-label">订单1</span>
+			</a>
+			<script type="text/javascript">
+					$("#aaa").click(function(){
+						window.location.href="showall"
+					})
+			</script>
 			<a class="mui-tab-item " href="#my" id="myInfoMenu">
 				<span class="mui-icon mui-icon-contact"></span>
 				<span class="mui-tab-label">我的</span>
@@ -97,7 +107,7 @@
 				<!--4大服务类型-->
 				<ul style="margin-top: 0;" class="mui-table-view mui-grid-view">
 					<li class="mui-table-view-cell mui-media mui-col-xs-3">
-						<a id="goWx" href="Map.html">
+						<a id="goWx" href="Map.jsp">
 							<img style="width:60%" src="img/serverType/wx.png" />
 							<div class="mui-media-body">维修</div>
 						</a>
@@ -278,7 +288,7 @@
 							<div style="background: #FFF;" class="mui-scroll">
 								<a class="mui-control-item mui-active" href="#order1">未完成</a>
 								<a class="mui-control-item" href="#order2">已完成</a>
-								<a class="mui-control-item" href="#order3">未评论</a>
+								<a class="mui-control-item" href="#order3">待付款</a>
 								<a class="mui-control-item" href="#order4">全部</a>
 							</div>
 						</div>
@@ -295,51 +305,55 @@
 										<!--数据列表-->
 										<div name="orderData" id="WWC">
 											<ul class="mui-table-view">
-        <li class="mui-table-view-cell">
-            <div style="justify-content:space-between" class="box">
-                <div>
-                    
-                    <img style="height:21px;width:auto;margin-top: -5px;" src="img/serverType/az.png" />
-                   
-                </div>
-                <div>
-                    <p class='mui-ellipsis'>
-                       
-                        下单完成
-                        
-                    </p>
-                </div>
-            </div>
-        </li>
-        <li class="mui-table-view-cell">
-            <a class="choose"  test="goDetail" orderId="{{orderCode}}">
-                <div class="mui-media-body">
-                    <div style="font-size:0.32rem;margin: 0.2rem auto;" class="box box-align-left">
-                        <div style="text-align: left;" class="item">冰箱</div>
-                        <div style="flex: 1.5;text-align: left;" class="item"></div>
-                    </div>
-                    <p class='mui-ellipsis'>工单编号:R199283901021</p>
-                    <p class='mui-ellipsis'>预约时间:2015-08-01</p>
-                    <p class='mui-ellipsis'>地址:北京五道口101座</p>
-                </div>
-            </a>
-        </li>
-        <li class="mui-table-view-cell font-gray">
-            <div style="justify-content:space-between" class="box">
-                <div class="mui-left visible-hidden">
-                    实付款:&nbsp;
-                    <p style="display:inline-block;color: red;">100</p>
-                </div>
-                <div class="operation">
-                  
-                    <button test="cancelOrder" woId="{{woId}}" type="button" class="mui-btn mui-btn-primary">取消工单</button>
-                   
-                    <button test="goUrge" orderId="{{orderCode}}"  type="button" class="mui-btn mui-btn-primary">催单</button>
-                    
-                </div>
-            </div>
-        </li>
-    </ul>
+											
+																				
+																				
+<!-- 未完成 -->				
+																				
+										<!--   对所有订单进行遍历    --> 
+									<c:forEach items="${showordeing3 }" var="ss">					
+									        <li class="mui-table-view-cell">
+									            <div style="justify-content:space-between" class="box">
+									                <div>
+									                    
+									                    <img style="height:21px;width:auto;margin-top: -5px;" src="img/serverType/az.png" />
+									                   
+									                </div>
+									                <div>
+									                    <p class='mui-ellipsis'>下单完成</p>
+									                </div>
+									            </div>
+									        </li>
+									        <li class="mui-table-view-cell">
+									            <a class="choose"  test="goDetail" orderId="{{orderCode}}">
+									                <div class="mui-media-body">
+									                    <div style="font-size:0.32rem;margin: 0.2rem auto;" class="box box-align-left">
+									                        <div style="text-align: left;" class="item">${ss.name }</div>
+									                        <div style="flex: 1.5;text-align: left;" class="item"></div>
+									                    </div>
+									                    <p class='mui-ellipsis'>工单编号:${ss.ordeid }</p>
+									                    <p class='mui-ellipsis'>预约时间:${ss.servertime }</p>
+									                    <p class='mui-ellipsis'>地址:${ss.address }</p>
+									                </div>
+									            </a>
+									        </li>
+									        <li class="mui-table-view-cell font-gray">
+									            <div style="justify-content:space-between" class="box">
+									                <div class="mui-left visible-hidden">
+									                    实付款:&nbsp;
+									                    <p style="display:inline-block;color: red;">100</p>
+									                </div>
+									                <div class="operation">
+									                  
+									                    <button test="cancelOrder" woId="{{woId}}" type="button" class="mui-btn mui-btn-primary">取消工单</button>
+									                   
+									                    <button test="goUrge" orderId="{{orderCode}}"  type="button" class="mui-btn mui-btn-primary">催单</button>
+									                    
+									                </div>
+									            </div>
+									        </li>
+									     </c:forEach>	   								        
+  											  </ul>
 										</div>
 									</div>
 								</div>
@@ -353,8 +367,57 @@
 											<p>没有任何订单信息</p>
                                             <a goCate href="#orderType"  type="button" class="mui-btn">我要下单</a>
 										</div>
+										
+<!-- 已完成 -->									
 										<!--数据列表-->
-										<div name="orderData" id="YWC">
+										<div name="orderData" id="YWC">				
+											
+	                                 <!--   对所有订单进行遍历    --> 			
+								<ul class="mui-table-view">
+								
+								<c:forEach items="${showordeing4 }" var="ss1">					
+								        <li class="mui-table-view-cell">
+								            <div style="justify-content:space-between" class="box">
+								                <div>
+								                    
+								                    <img style="height:21px;width:auto;margin-top: -5px;" src="img/serverType/az.png" />
+								                   
+								                </div>
+								                <div>
+								                    <p class='mui-ellipsis'>订单完成</p>
+								                </div>
+								            </div>
+								        </li>
+								        <li class="mui-table-view-cell">
+								            <a class="choose"  test="goDetail" orderId="{{orderCode}}">
+								                <div class="mui-media-body">
+								                    <div style="font-size:0.32rem;margin: 0.2rem auto;" class="box box-align-left">
+								                        <div style="text-align: left;" class="item">${ss1.name }</div>
+								                        <div style="flex: 1.5;text-align: left;" class="item"></div>
+								                    </div>
+								                    <p class='mui-ellipsis'>工单编号:${ss1.ordeid }</p>
+								                    <p class='mui-ellipsis'>预约时间:${ss1.servertime }</p>
+								                    <p class='mui-ellipsis'>地址:${ss1.address }</p>
+								                </div>
+								            </a>
+								        </li>
+								        <li class="mui-table-view-cell font-gray">
+								            <div style="justify-content:space-between" class="box">
+								                <div class="mui-left visible-hidden">
+								                    实付款:&nbsp;
+								                    <p style="display:inline-block;color: red;">100</p>
+								                </div>
+								                <div class="operation">
+								                  
+								                    <button test="cancelOrder" woId="{{woId}}" type="button" class="mui-btn mui-btn-primary">取消工单</button>
+								                   
+								                    <button test="goUrge" orderId="{{orderCode}}"  type="button" class="mui-btn mui-btn-primary">催单</button>
+								                    
+								                </div>
+								            </div>
+								        </li>
+								     </c:forEach>	   
+								    </ul>
 										</div>
 									</div>
 								</div>
@@ -370,6 +433,57 @@
 										</div>
 										<!--数据列表-->
 										<div name="orderData"  id="WPL">
+										<ul>
+<!-- 待付款 -->							
+														<!--   对所有订单进行遍历    --> 
+									<c:forEach items="${showordeing2 }" var="ss">					
+									        <li class="mui-table-view-cell">
+									            <div style="justify-content:space-between" class="box">
+									                <div>
+									                    
+									                    <img style="height:21px;width:auto;margin-top: -5px;" src="img/serverType/az.png" />
+									                   
+									                </div>
+									                <div>
+									                    <p class='mui-ellipsis'>等待付款</p>
+									                </div>
+									            </div>
+									        </li>
+									        <li class="mui-table-view-cell">
+									            <a class="choose"  test="goDetail" orderId="{{orderCode}}">
+									                <div class="mui-media-body">
+									                    <div style="font-size:0.32rem;margin: 0.2rem auto;" class="box box-align-left">
+									                        <div style="text-align: left;" class="item">${ss.name }</div>
+									                        <div style="flex: 1.5;text-align: left;" class="item"></div>
+									                    </div>
+									                    <p class='mui-ellipsis'>工单编号:${ss.ordeid }</p>
+									                    <p class='mui-ellipsis'>预约时间:${ss.servertime }</p>
+									                    <p class='mui-ellipsis'>地址:${ss.address }</p>
+									                </div>
+									            </a>
+									        </li>
+									        <li class="mui-table-view-cell font-gray">
+									            <div style="justify-content:space-between" class="box">
+									                <div class="mui-left visible-hidden">
+									                    实付款:&nbsp;
+									                    <p style="display:inline-block;color: red;">100</p>
+									                </div>
+									                <div class="operation">
+									                  
+									                    <button test="cancelOrder" woId="{{woId}}" type="button" class="mui-btn mui-btn-primary">取消订单</button>
+									                   
+									                    <button test="goUrge"  onclick="paymoney()"  id="paymoney" orderId="{{orderCode}}"  type="button" class="mui-btn mui-btn-primary">付款</button>
+									                    
+									                    <script type="text/javascript">
+                                                                 function paymoney(){
+                                                                	alert("未开通！")
+                                                                 }
+                                                          </script>
+									                </div>
+									            </div>
+									        </li>
+									     </c:forEach>	   								        
+  									</ul>
 										</div>
 									</div>
 								</div>
@@ -382,9 +496,59 @@
 											<img />
 											<p>没有任何订单信息</p>
 											<a goCate href="#orderType" type="button" class="mui-btn">我要下单</a>
+<!-- 全部 -->										
 										</div>
 										<!--数据列表-->
                                         <div name="orderData" id="QB">
+											<ul class="mui-table-view">								
+												<!--   对所有订单进行遍历    --> 
+											<c:forEach items="${showordeing1 }" var="ss1">					
+											        <li class="mui-table-view-cell">
+											            <div style="justify-content:space-between" class="box">
+											                <div>
+											                    
+											                    <img style="height:21px;width:auto;margin-top: -5px;" src="img/serverType/az.png" />
+											                   
+											                </div>
+											                <div>
+											                    <p class='mui-ellipsis'>全部订单</p>
+											                </div>
+											            </div>
+											        </li>
+											        <li class="mui-table-view-cell">
+											            <a class="choose"  test="goDetail" orderId="{{orderCode}}">
+											                <div class="mui-media-body">
+											                    <div style="font-size:0.32rem;margin: 0.2rem auto;" class="box box-align-left">
+											                        <div style="text-align: left;" class="item">${ss1.name }</div>
+											                        <div style="flex: 1.5;text-align: left;" class="item"></div>
+											                    </div>
+											                    <p class='mui-ellipsis'>工单编号:${ss1.ordeid }</p>
+											                    <p class='mui-ellipsis'>预约时间:${ss1.servertime }</p>
+											                    <p class='mui-ellipsis'>地址:${ss1.address }</p>
+											                </div>
+											            </a>
+											        </li>
+											        <li class="mui-table-view-cell font-gray">
+											            <div style="justify-content:space-between" class="box">
+											                <div class="mui-left visible-hidden">
+											                    实付款:&nbsp;
+											                    <p style="display:inline-block;color: red;">100</p>
+											                </div>
+											                <div class="operation">
+											                  
+											                    <button test="cancelOrder" woId="{{woId}}" type="button" class="mui-btn mui-btn-primary">取消工单</button>
+											                   
+											                    <button test="goUrge" orderId="{{orderCode}}"  type="button" class="mui-btn mui-btn-primary">催单</button>
+											                    
+											                </div>
+											            </div>
+											        </li>
+											     </c:forEach>	   
+											        
+											        
+											        
+											        
+											    </ul>
                                         </div>
 									</div>
 								</div>
@@ -665,7 +829,7 @@
 						<div class="mui-content-padded">
 							<div class="mui-input-row">
 								<label>旧密码<span style="color: red;font-weight:  bold">*</span></label>
-								<input id="oldp" type="password" class="mui-input-password mui-input-clear" placeholder="6-18位的数字、字母组合">
+								<input id="oldpassword" type="password" class="mui-input-password mui-input-clear" placeholder="6-18位的数字、字母组合">
 								<span class="mui-icon mui-icon-eye"></span>
 							</div>
 							<div class="mui-input-row">
@@ -684,19 +848,19 @@
 						 <script type="text/javascript">
                /*   进行xiugai传值 */
                  $("#passwordUpdate").click(function(){
-                	 alert("aaa");
                  	var newp = $("#newp").val();
-                /*  	var password1 = $("#password").val();
-                 	var code1 = $("#code").val(); */
+               	    var oldpassword = $("#oldpassword").val();
                  	$.ajax({
                  		type:"post",
-                 		url:"user/updatePass",
+                 		url:"updatePass",
                  		dataType:"json",
-                 		data:{password:newp},
+                 		data:{password:newp,oldpassword:oldpassword},
                  		async:true,
                  		success:function(data){
                  			if(data==1){
-                 				alert("success")
+                 				window.location.href="login.jsp";
+                 			}else{
+                 				alert("修改失败！原密码错误");
                  			}
                  		}
                      });
@@ -971,7 +1135,6 @@
 <!--未完成订单模板-->
 <script id="order-WWC" type="text/x-handlebars-template">
 {{#each this}}
-    
 {{/each}}
 </script>
 <!--已评论订单模板-->
@@ -1213,7 +1376,7 @@
                     <span>{{serviceType}}</span>
                 </div>
                 <div>
-                    <p class='mui-ellipsis'>已完成</p>
+                    <p class='mui-ellipsis'>aaaaa</p>
                 </div>
             </div>
         </li>

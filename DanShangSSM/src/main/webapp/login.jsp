@@ -32,7 +32,7 @@
                     <input type="checkbox" checked="checked" name="checkbox"/>
                     <lable>记住密码</lable>
                 </div>
-                <a href="newPassword.html">忘记密码</a>
+                <a href="newPassword.jsp">忘记密码</a>
             </div>
             <div class="login_btn" id="login_btn">登&nbsp;&nbsp;录</div>
             <script type="text/javascript">
@@ -40,7 +40,7 @@
             	var name1 = $("#name").val();
             	$.ajax({
             		type:"post",
-            		url:"user/logincheck",
+            		url:"logincheck",
             		dataType:"json",
             		data:{name:name1},
             		async:true,
@@ -55,15 +55,12 @@
             		}
                 });
             })
-            
-            
-            
             $("#login_btn").click(function(){
             	var name1 = $("#name").val();
                 var password1 = $("#password").val();
             	$.ajax({
             		type:"post",
-            		url:"user/login",
+            		url:"login",
             		dataType:"json",
             		data:{name:name1,password:password1},
             		async:true,
@@ -72,7 +69,7 @@
             				$("#tishi").html("密码不正确！");
             				$("#tishi").css("color","red");
             			}else{
-            				window.location.href='index.html';
+            				window.location.href='index.jsp';
             			}
             		}
                 });
@@ -82,7 +79,7 @@
             
             
 			<div style="margin-top:10px">
-			<a class="login_btn" href="register.html">新&nbsp;&nbsp;手&nbsp;&nbsp;注&nbsp;&nbsp;册</a>
+			<a class="login_btn" href="register.jsp">新&nbsp;&nbsp;手&nbsp;&nbsp;注&nbsp;&nbsp;册</a>
 			</div>
         </form>
         <div class="other_login">

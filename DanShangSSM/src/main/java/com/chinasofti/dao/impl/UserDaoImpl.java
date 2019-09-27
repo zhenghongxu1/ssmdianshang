@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao{
 	public String login(String usernam, String password) {
 		UserExample userExample = new UserExample();
 		Criteria createCriteria = userExample.createCriteria();
-//		½«´«½øÀ´µÄÐÅºÅ½øÐÐ±È½Ï
+//		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅºÅ½ï¿½ï¿½Ð±È½ï¿½
 		 createCriteria.andNameEqualTo(usernam).andPasswordEqualTo(password);
 		List<User> selectByExample = dao.selectByExample(userExample);
 		if(selectByExample.size()>=1){
@@ -44,7 +44,7 @@ public class UserDaoImpl implements UserDao{
 	}
 	@Override
 	public int updatePassword(User user,String oldPassword) {
-	/*	²éÑ¯¾ÉÃÜÂë*/
+	/*	ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 		UserExample example = new UserExample();
 		Criteria createCriteria = example.createCriteria();
 		createCriteria.andPasswordEqualTo(oldPassword).andUseridEqualTo(user.getUserid());
@@ -52,7 +52,7 @@ public class UserDaoImpl implements UserDao{
 		if(selectByExample.size()<=0){
 			return 0;
 		}
-		/*	ÐÞ¸ÄÐÂÃÜÂë*/
+		/*	ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 		dao.changeWord(user);
 		return 1;
 	}
@@ -72,15 +72,13 @@ public class UserDaoImpl implements UserDao{
 	public String loginUser(String name) {
 		UserExample userExample = new UserExample();
 		Criteria createCriteria = userExample.createCriteria();
-//		½«´«½øÀ´µÄÐÅºÅ½øÐÐ±È½Ï
+//		ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅºÅ½ï¿½ï¿½Ð±È½ï¿½
 		 createCriteria.andNameEqualTo(name);
 		List<User> selectByExample = dao.selectByExample(userExample);
 		System.out.println(selectByExample.size());
 		if(selectByExample.size()>=1){ 
-			System.out.println("ÕË»§´æÔÚ");
 			return "1";  
 		}else{
-			System.out.println("ÕË»§²»´æÔÚ");
 			return "2";
 		}
 	}

@@ -9,7 +9,7 @@ $(document).ready(function(){
         putParamOrderingPage(twoProdCode);
         mui.openWindow({
             id: "ordering",
-            url: "ordering.html",
+            url: "ordering.jsp",
             show: {
                 aniShow: aniShow
             },

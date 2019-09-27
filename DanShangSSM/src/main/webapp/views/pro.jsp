@@ -1,6 +1,10 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.lang.annotation.Target"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -26,9 +30,9 @@
 								<form class="mui-input-group">
 									<div class="mui-row">
 										<div class="box">
-											<div style="margin: 10px" class="item item-25"><button type="button" class="mui-btn btn-pro">冰箱</button></div>
-											<div style="margin: 10px"class="item item-25"><button type="button" class="mui-btn btn-pro">冷柜</button></div>
-											<div style="margin: 10px"class="item item-25"><button type="button" class="mui-btn btn-pro">洗衣机</button></div>
+			 <c:forEach items="${allgoods }" var="aa">
+		<div style="margin: 10px" class="item item-25"><button type="button" class="mui-btn btn-pro">${aa.name }</button></div>
+			</c:forEach>								
 										</div>
 									</div>
 								</form>
@@ -48,6 +52,7 @@
 								</form>
 							</div>
 						</li>
+						
 						<li class="mui-table-view-cell mui-collapse">
 							<a class="mui-navigate-right" href="javascript:void(0);">厨房家电</a>
 							<div class="mui-collapse-content">
@@ -77,7 +82,7 @@
 				$("button").on("tap", function() {
 					mui.openWindow({
 						id: "ordering",
-						url: "ordering.html?ceshi=1",
+						url: "ordering.jsp?ceshi=1",
 						show: {
 							aniShow: aniShow
 						},
@@ -105,5 +110,4 @@
 			})
 		</script>
 	</body>
-
 </html>

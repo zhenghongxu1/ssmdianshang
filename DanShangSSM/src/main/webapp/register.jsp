@@ -15,7 +15,7 @@
     <div class="register">
         <div class="regTop">
             <span>用户注册</span>
-            <a class="back" href="login1.html">&lt;&nbsp;返回</a>
+            <a class="back" href="login1.jsp">&lt;&nbsp;返回</a>
         </div>
         <div class="content">
             <div class="point">
@@ -52,7 +52,7 @@
                  	var code1 = $("#code").val();
                  	$.ajax({
                  		type:"post",
-                 		url:"user/register",
+                 		url:"register",
                  		dataType:"json",
                  		data:{name:name1,password:password1},
                  		async:true,
@@ -73,7 +73,7 @@
             	var name1 = $("#tel").val();
             	$.ajax({
             		type:"post",
-            		url:"user/logincheck",
+            		url:"logincheck",
             		dataType:"json",
             		data:{name:name1},
              		async:true,

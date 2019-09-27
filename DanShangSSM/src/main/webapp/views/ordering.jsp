@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -287,7 +289,7 @@
 
 				$("#goCharge").on("tap",function(e){
 				
-				var url = "charge/charge.html";
+				var url = "charge/charge.jsp";
 					mui.openWindow({
 						id: "charge",
 						url: url,
@@ -450,7 +452,7 @@
             $("#goLogin").on("tap",function(){
                 mui.openWindow({
                     id: "login",
-                    url: "../views/login.html?source=my&from=my",
+                    url: "../views/login.jsp?source=my&from=my",
                     show: {
                         aniShow: aniShow
                     },

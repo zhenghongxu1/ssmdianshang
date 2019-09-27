@@ -347,4 +347,7 @@
       skill = #{skill,jdbcType=VARCHAR}
     where goodsid = #{goodsid,jdbcType=INTEGER}
   </update>
+  <select  id="findall" resultType="com.chinasofti.pojo.Goods">
+  SELECT * FROM goods;
+  </select>
 </mapper>

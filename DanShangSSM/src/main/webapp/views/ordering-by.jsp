@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +13,9 @@
 		<link href="../css/mui.picker.min.css" rel="stylesheet" />
 		<link href="../css/layer.css" rel="stylesheet" />
 		<link href="../css/main.css" rel="stylesheet" />
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
 	</head>
+
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
@@ -21,7 +25,7 @@
 		<div class="footer-div">
 			<div style="visibility: hidden;" class="div-left">实付款：<span>¥&nbsp;158</span></div>
 			<div class="div-right">
-				<div id="xiadan" class="mui-btn mui-btn-primary">
+				<div  id="xiadan1">
 					下一步
 				</div>
 			</div>
@@ -34,29 +38,56 @@
 					</div>
 					<div class="content">
 						<ul class="mui-table-view">
-							<li style="line-height: 2;" class="mui-table-view-cell">
-								油烟机（单价158元）
-								<div style="float: right;" class="mui-numbox" data-numbox-min="1" >
-									<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
-									<input id="test" class="mui-input-numbox" type="number" value="1">
-									<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+							<li style="line-height: 2;" class="mui-table-view-cell" >
+							
+goods(单价/元):<input id="money"  disabled="disabled" style="width:200px; border: 0px solid red" type="text" value="45632">
+								
+								<div style="float: right;" class="mui-numbox" data-numbox-min="1" data-numbox-max="10">
+									<button id="jian" onclick="jisuan()" class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+									<input id="test" class="mui-input-numbox" type="number" >
+									<button id="sum" onclick="jisuan()" class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+									<script type="text/javascript">
+									$("#test").val(1)
+	                                  $("#jian").click(function(){
+	                                	  $("#test").val();
+	                                		 alert($("#test").val())
+	                                  })
+                                    </script>
 								</div>
 							</li>
 							<li class="mui-table-view-cell font-gray">
 								<div class="box box-justify-right">
 									<div>
-										<p style="text-align: right;padding-top:0px">合计:&nbsp;¥158元</p>
-										<p style="text-align: right;padding-bottom:0px;font-size: 16px;">实付款:&nbsp;<span style="color: red;">¥100</span></p>
+										<p style="text-align: right;padding-top:0px">合计:&nbsp;<span id="sum_money">100</span>元</p>
+										<p style="text-align: right;padding-bottom:0px;font-size: 16px;">实付款:&nbsp;<span  id="sum_money1" style="color: red;">100</span>元</p>
 									</div>
 								</div>
 							</li>
 						</ul>
 					</div>
+					
+					<!-- 者利用来进行加减的 -->
+					<script type="text/javascript">
+					jisuan();
+                   function jisuan(){
+                	var money=document.getElementById("money").value;
+   					var test=document.getElementById("test").value;
+   					var sum_money=document.getElementById("sum_money");
+   					var sum_money1=document.getElementById("sum_money1");
+                	   sum_money.value = test*money;
+                	   sum_money1.value = test*money;
+                	   sum_money.innerHTML=sum_money.value;
+                	   sum_money1.innerHTML=sum_money1.value;
+                   }
+                    </script>
+                    
+                    
 					<div class="content">
 						<form class="mui-input-group">
 							<div class="mui-input-row">
 								<label>服务内容</label>
-								<textarea placeholder="请填写服务内容"></textarea>
+								<!-- <textarea  placeholder="请填写服务内容" ></textarea> -->
+								<input id="serverconn"  placeholder="请填写服务内容">
 							</div>
 							<div class="mui-input-row">
 								<label>服务时间</label>
@@ -64,7 +95,7 @@
 							</div>
 							<div class="mui-input-row">
 								<label>品牌</label>
-								<input type="text" class="mui-input-clear" placeholder="请输入产品品牌">
+								<input id="brand" type="text" class="mui-input-clear" placeholder="请输入产品品牌">
 							</div>
 						</form>
 					</div>
@@ -88,19 +119,19 @@
 						<form class="mui-input-group">
 							<div class="mui-input-row">
 								<label>联系人</label>
-								<input type="text" class="mui-input-clear" placeholder="请输入您的姓名">
+								<input type="text" id="username" class="mui-input-clear" placeholder="请输入您的姓名">
 							</div>
 							<div class="mui-input-row">
 								<label>手机号码</label>
-								<input type="tel" class="mui-input-clear" placeholder="请输入您的电话号码">
+								<input id="tel1" type="tel" class="mui-input-clear" placeholder="请输入您的电话号码">
 							</div>
 							<div class="mui-input-row">
 								<label>详细地址</label>
 								<input id="address" type="text" placeholder="请选择详细地址">
 							</div>
 							<div class="mui-input-row">
-								<label>楼层门牌</label>
-								<input type="text" placeholder="**路（街道）**小区**号">
+								<label>楼层门牌 </label>
+								<input id="addresss" type="text" placeholder="**路（街道）**小区**号">
 							</div>
 						</form>
 					</div>
@@ -108,12 +139,59 @@
 				</div>
 			</div>
 		</div>
+		
+		
+					<script language="javascript">
+	
+    $("#xiadan1").click(function(){
+    	/* 生成订单 */
+    	var vNow = new Date();
+		var sNow = "zhx";
+		sNow += String(vNow.getFullYear());
+		sNow += String(vNow.getMonth() + 1);
+		sNow += String(vNow.getDate());
+		sNow += String(vNow.getHours());
+		sNow += String(vNow.getMinutes());
+		sNow += String(vNow.getSeconds());
+		sNow += String(vNow.getMilliseconds());
+		
+		
+		var vvNow = new Date();
+		var ssNow = "";
+		ssNow += String(vvNow.getFullYear());
+		ssNow += "-"+String(vvNow.getMonth() + 1);
+		ssNow += "-"+String(vvNow.getDate());
+		ssNow += "  "+String(vvNow.getHours());
+		ssNow += ":"+String(vvNow.getMinutes());
+		ssNow += ":"+String(vvNow.getSeconds());
+            var sum_money = $("#sum_money").val();
+    	   var serverconn = $("#serverconn").val();
+    	   var serverTime = $("#serverTime").val();
+    	   var  brand = $("#brand").val();
+    	   var username = $("#username").val();
+    	   var tel1 = $("#tel1").val();
+    	   var addresss = $("#addresss").val();
+    	   var uid = ${yonghu_id }
+    	   window.location.href="../orderpp?ordeid="+sNow+"&sumprice="+sum_money+"&servercon="+serverconn+"&brande="+brand+"&name="+username+"&tel="+tel1+"&address="+addresss+"&ordingtime="+ssNow+"&user="+uid
+    			   /*   	$.ajax({
+            		type:"post",
+            		url:"../user/orderpp",
+            		dataType:"json",
+            		data:{ordeid:sNow,sumprice:sum_money,servercon:serverconn,brande:brand,name:username,tel:tel1,address:addresss},
+            		async:true,
+            		success:function(data){
+            			window.location.href="../wappay/pay.jsp"
+            		}
+                }); */  
+            })
+
+</script>
 		<script src="../lib/mui.min.js"></script>
 		<script src="../lib/mui.picker.min.js"></script>
 		<script src="../lib/zepto.min.js"></script>
 		<script src="../data/cityData3.js"></script>
 		<script src="../lib/layer.js"></script>
-		<script>
+<!-- 		<script>
 			mui.init({
 				swipeBack: true //启用右滑关闭功能
 			});
@@ -199,7 +277,9 @@
 					}
 				})
 			})
-		</script>
+		</script> -->
+		
+	
 	</body>
 
 </html>

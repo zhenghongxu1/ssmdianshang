@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+<!DOCTYPE html>
 <html >
 <head>
     <meta charset="utf-8" />
@@ -73,10 +75,10 @@
 	var body= document.getElementById("body");
 	myyouyou.style.height = screenHeight+"px";
 	function toudi(){
-		window.location.href = 'views/pro.html';
+		window.location.href = 'user/findallgoods';
 	}
 	function shangmenfuwu(){
-		window.location.href = 'login.html';
+		window.location.href = 'login.jsp';
 	}
 	
 </script>
