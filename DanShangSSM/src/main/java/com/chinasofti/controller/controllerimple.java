@@ -18,9 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.baidu.aip.util.Base64Util;
-import com.chinasofti.mapper.GoodsMapper;
 import com.chinasofti.mapper.OrdeingMapper;
 import com.chinasofti.pojo.Goods;
 import com.chinasofti.pojo.Ordeing;
@@ -31,6 +28,10 @@ import com.chinasofti.server.GoodsDaoServer;
 import com.chinasofti.server.UserDaoServer;
 import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONNull;
+import net.sf.json.JSONObject;
+import unit.Base64Util;
 import unit.FileUtil;
 import unit.GsonUtils;
 import unit.HttpUtil;
@@ -149,27 +150,35 @@ public class controllerimple {
 			return "index.jsp";
 	}	
 	
-	
-    public static String add() {
+	@RequestMapping("/faceregister")
+	@ResponseBody
+    public  String add(String base) {
     	// 娉ㄦ剰杩欓噷浠呬负浜嗙畝鍖栫紪鐮佹瘡涓�娆¤姹傞兘鍘昏幏鍙朼ccess_token锛岀嚎涓婄幆澧僡ccess_token鏈夎繃鏈熸椂闂达紝 瀹㈡埛绔彲鑷缂撳瓨锛岃繃鏈熷悗閲嶆柊鑾峰彇銆�
         String accessToken = "24.234517545b21e9ea9b334b23af77bca5.2592000.1572004474.282335-17061810";
         // 璇锋眰url
         String url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add";
         try {
-        	byte[] bytes1 = FileUtil.readFileByBytes("D:\\cs\\jianailiang1.jpg");
-    		String image1 = Base64Util.encode(bytes1);
+        	/*byte[] bytes1 = FileUtil.readFileByBytes("D:\\cs\\jianailiang1.jpg");*/
+    		String image1 = base;
             Map<String, Object> map = new HashMap<>();
             map.put("image",image1);
             map.put("group_id", "group_repeat");
-            map.put("user_id", "user1");
+            map.put("user_id", "17760624765");
             map.put("user_info", "abc");
             map.put("liveness_control", "NORMAL");
             map.put("image_type", "BASE64");
             map.put("quality_control", "LOW");
             String param = GsonUtils.toJson(map);
             String result = HttpUtil.post(url, accessToken, "application/json", param);
+            JSONObject fromObject = JSONObject.fromObject(result);
+//          获取错误代码
+          String facefuss = fromObject.getString("error_code"); 
+          System.out.println(facefuss);
+          if(facefuss.equals("0")){
+          	 return "1";
+          }
             System.out.println(result);
-            return result;
+            return "1";
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -178,19 +187,19 @@ public class controllerimple {
     
     
     
-    
-    public static String match() {
-        // 璇锋眰url
+	@RequestMapping("/facelogin")
+	@ResponseBody
+    public String facematch(String base,HttpServletResponse response) {
         String url = "https://aip.baidubce.com/rest/2.0/face/v3/match";
         try {
-
-            byte[] bytes1 = FileUtil.readFileByBytes("D:\\cs\\jianailiang1.jpg");
-            byte[] bytes2 = FileUtil.readFileByBytes("D:\\cs\\zhenghongxu.png");
+        System.out.println(base);
+            byte[] bytes1 = FileUtil.readFileByBytes("D:\\cs\\zhenghongxu.png");
+          /*  byte[] bytes = FileUtil.readFileByBytes("D:\\cs\\jianailiang.jpg");*/
             String image1 = Base64Util.encode(bytes1);
-            String image2 = Base64Util.encode(bytes2);
-
+            //前台传来的人脸
+            String image2 = base;
+           /* String image2=Base64Util.encode(bytes);*/
             List<Map<String, Object>> images = new ArrayList<>();
-
             Map<String, Object> map1 = new HashMap<>();
             map1.put("image", image1);
             map1.put("image_type", "BASE64");
@@ -204,22 +213,35 @@ public class controllerimple {
             map2.put("face_type", "LIVE");
             map2.put("quality_control", "LOW");
             map2.put("liveness_control", "NORMAL");
-
             images.add(map1);
             images.add(map2);
-
             String param = GsonUtils.toJson(images);
-
-            // 娉ㄦ剰杩欓噷浠呬负浜嗙畝鍖栫紪鐮佹瘡涓�娆¤姹傞兘鍘昏幏鍙朼ccess_token锛岀嚎涓婄幆澧僡ccess_token鏈夎繃鏈熸椂闂达紝 瀹㈡埛绔彲鑷缂撳瓨锛岃繃鏈熷悗閲嶆柊鑾峰彇銆�
             String accessToken = "24.234517545b21e9ea9b334b23af77bca5.2592000.1572004474.282335-17061810";
-
             String result = HttpUtil.post(url, accessToken, "application/json", param);
-            String score=result.split(",")[5].split(":")[2];
-            return score;
+            JSONObject fromObject = JSONObject.fromObject(result);
+//            获取错误代码
+            String facefuss = fromObject.getString("error_code"); 
+            System.out.println(facefuss);
+            if(facefuss.equals("223114")){
+            	 return "223114";
+            }else if(facefuss.equals("0")){
+                //获取分数
+                JSONObject jsonObject = fromObject.getJSONObject("result");
+                String string = jsonObject.getString("score");             
+                double score = Double.parseDouble(string);
+                if(score>=90){
+             	   return "1";   //登陆成功
+                }else{
+             	   return "2";   //登陆失败
+                }
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+        	return "fail"; 
         }
-        return null;
+		return "fail";
     }
+	
+	
+	
 }	
     

@@ -17,7 +17,7 @@ public class SessionFilter extends OncePerRequestFilter{
 			throws ServletException, IOException {
 	       request.getSession().setAttribute("loginedUser", "ssss");
         // 涓嶈繃婊ょ殑uri
-        String[] notFilter = new String[] { "login.jsp","faceLogin.jsp","login1.jsp", "index.jsp","Map.jsp","newPassword.html","register.jsp","/DanShangSSM/newPassword.jsp","NewFile.jsp"};
+        String[] notFilter = new String[] { "login.jsp","face.jsp","faceLogin.jsp","login1.jsp", "index.jsp","Map.jsp","newPassword.html","register.jsp","/DanShangSSM/newPassword.jsp","NewFile.jsp"};
         // 璇锋眰鐨剈ri
         String uri = request.getRequestURI();
        System.out.println(uri);
