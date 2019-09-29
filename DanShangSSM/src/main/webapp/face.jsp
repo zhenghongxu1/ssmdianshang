@@ -164,11 +164,6 @@ h1 {
 			}
   			
   			
-  			
-  			
-  			
-  			
-  			
   			function register(){
   				//把流媒体数据画到convas画布上去
   				context.drawImage(video,0,0,400,300);
@@ -181,7 +176,7 @@ h1 {
   						if(data=="1"){
   							alert("注册成功！");
   						}
-						);
+  					});
 			}
 			function getBase64() {
 				var imgSrc = document.getElementById("canvas").toDataURL("image/png");
