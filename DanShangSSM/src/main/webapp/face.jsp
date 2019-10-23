@@ -175,9 +175,13 @@ h1 {
   					success:function(data){
   						if(data=="1"){
   							alert("注册成功！");
+  						  }
   						}
   					});
 			}
+  				
+  				
+  				
 			function getBase64() {
 				var imgSrc = document.getElementById("canvas").toDataURL("image/png");
 				return imgSrc.split("base64,")[1];
